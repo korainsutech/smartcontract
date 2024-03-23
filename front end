@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insurance Claim</title>
+</head>
+<body>
+    <h1>Insurance Claim Filing</h1>
+    <label for="policyHolder">Policy Holder Address:</label>
+    <input type="text" id="policyHolder">
+    <button onclick="fileClaim()">File Claim</button>
+    <p id="claimResult"></p>
+
+    <script>
+        // Contract ABI (replace with actual ABI)
+        const contractABI = [
+            // Add the ABI here
+        ];
+
+        const contractAddress = "CONTRACT_ADDRESS"; // Replace with actual contract address
+        const web3 = new Web3(window.ethereum);
+
+        const insuranceContract = new web3.eth.Contract(contractABI, contractAddress);
+
+        async function fileClaim() {
+            const policyHolder = document.getElementById("policyHolder").value;
+            await insuranceContract.methods.fileClaim(policyHolder).send({ from: ethereum.selectedAddress });
+            document.getElementById("claimResult").innerText = "Claim filed successfully!";
+        }
+    </script>
+</body>
+</html>
