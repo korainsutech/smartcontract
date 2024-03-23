@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insurance Policy Interface</title>
+</head>
+<body>
+    <h1>Insurance Policy for BMW A5, 2028 Model</h1>
+    
+    <p><strong>Insured Item:</strong> BMW A5, 2028 model</p>
+    <p><strong>Coverage Period:</strong> 3 years</p>
+    <p><strong>Premium Amount:</strong> 1 ether</p>
+    <p><strong>Policy Status:</strong> <span id="policyStatus">Inactive</span></p>
+    
+    <button onclick="activatePolicy()">Activate Policy</button>
+    <button onclick="claimInsurance()">Claim Insurance</button>
+
+    <script src="app.js"></script>
+</body>
+</html>
+
+
