@@ -1,0 +1,31 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract InsuranceClaim {
+    address public insuranceCompany;
+    mapping(address => uint256) public policyHolders;
+    
+    event AccidentClaim(address indexed policyHolder, uint256 amount);
+
+    constructor() {
+        insuranceCompany = msg.sender;
+    }
+
+    modifier onlyInsuranceCompany() {
+        require(msg.sender == insuranceCompany, "Only the insurance company can perform this action");
+        _;
+    }
+
+    function setPolicy(address policyHolder, uint256 premium) public onlyInsuranceCompany {
+        policyHolders[policyHolder] = premium;
+    }
+
+    function fileClaim(address policyHolder) public {
+        require(policyHolders[policyHolder] > 0, "Policy holder not found or has no premium set");
+        // Add conditions to verify accident using telematic data
+        // For simplicity, let's assume any claim filed is valid
+        uint256 payoutAmount = policyHolders[policyHolder] * 2; // Payout amount is double the premium
+        payable(policyHolder).transfer(payoutAmount);
+        emit AccidentClaim(policyHolder, payoutAmount);
+    }
+}
